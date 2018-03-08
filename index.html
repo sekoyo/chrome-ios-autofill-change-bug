@@ -27,7 +27,7 @@
     </form>
     
     <h2>React synthetic change event</h2>
-    <p>React's onChange event is broken in iOS Chrome (does not fire and the value proeprty isn't updated)</p>
+    <p>React's onChange event is broken in iOS Chrome (does not fire and the value property isn't updated)</p>
     <form id="react-form"></form>
 
     <div id="ui-console"></div>
@@ -45,11 +45,7 @@
         }
 
         render() {
-          return (
-            <form>
-              <input type="email" name="email" placeholder="Enter your email" onChange={e => this.onInputChange(e)} />
-            </form>
-          );
+          return <input type="email" name="email" placeholder="Enter your email" onChange={e => this.onInputChange(e)} />;
         }
       }
 
