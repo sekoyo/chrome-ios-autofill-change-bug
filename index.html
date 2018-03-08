@@ -39,7 +39,7 @@
 
       Array.from(document.querySelectorAll('.native-input')).forEach(input => input.addEventListener('change', function (event) {
         uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
-      });
+      }));
 
       class Form extends React.Component {
         onChange(event) {
