@@ -23,6 +23,8 @@
   <body>
     <h2>Native change event</h2>
     <form>
+      <input class="native-input" type="text" name="firstname" placeholder="Enter your firstname" />
+      <input class="native-input" type="text" name="lastname" placeholder="Enter your lastname" />
       <input class="native-input" type="email" name="email" placeholder="Enter your email" />
     </form>
     
@@ -35,7 +37,7 @@
     <script>
       const uiConsole = document.querySelector('#ui-console');
 
-      document.querySelector('.native-input').addEventListener('change', function (event) {
+      Array.from(document.querySelectorAll('.native-input')).forEach(input => input.addEventListener('change', function (event) {
         uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
       });
 
