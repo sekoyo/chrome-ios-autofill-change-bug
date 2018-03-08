@@ -17,26 +17,46 @@
         content: '> ';
       }
     </style>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   </head>
   <body>
-    <form action="https://codepen.io/ferahl/pen/LdYRjY">
-      <input type="email" name="email"  placeholder="Enter your email" />
-
-      <button type="submit">Submit</button>
+    <h2>Native change event</h2>
+    <form>
+      <input class="native-input" type="email" name="email" placeholder="Enter your email" />
     </form>
+    
+    <h2>React synthetic change event</h2>
+    <p>React's onChange event is broken in iOS Chrome (does not fire and the value proeprty isn't updated)</p>
+    <form id="react-form"></form>
 
     <div id="ui-console"></div>
 
     <script>
       const uiConsole = document.querySelector('#ui-console');
 
-      document.querySelector('input').addEventListener('change', function (event) {
-        uiConsole.innerHTML += `<div>Change event: ${event.target.value}</div>`;
+      document.querySelector('.native-input').addEventListener('change', function (event) {
+        uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
       });
 
-      // document.querySelector('form').addEventListener('submit', function(event) {
-      //   event.preventDefault();
-      // });
+      class Form extends React.Component {
+        onInputChange(event) {
+          uiConsole.innerHTML += `<div>React change event: ${event.target.value}</div>`;
+        }
+
+        render() {
+          return (
+            <form>
+              <input type="email" name="email" placeholder="Enter your email" onChange={e => this.onInputChange(e)} />
+            </form>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <Form />,
+        document.getElementById('react-form')
+      );
     </script>
   </body>
 </html>
