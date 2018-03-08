@@ -1,0 +1,42 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Chrome iOS Autofill bug</title>
+    <style>
+      #ui-console {
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        font-size: 14px;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      #ui-console > *::before {
+        position: relative;
+        content: '> ';
+      }
+    </style>
+  </head>
+  <body>
+    <form action="https://codepen.io/ferahl/pen/LdYRjY">
+      <input type="email" name="email"  placeholder="Enter your email" />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="ui-console"></div>
+
+    <script>
+      const uiConsole = document.querySelector('#ui-console');
+
+      document.querySelector('input').addEventListener('change', function (event) {
+        uiConsole.innerHTML += `<div>Change event: ${event.target.value}</div>`;
+      });
+
+      // document.querySelector('form').addEventListener('submit', function(event) {
+      //   event.preventDefault();
+      // });
+    </script>
+  </body>
+</html>
