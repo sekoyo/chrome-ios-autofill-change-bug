@@ -1,0 +1,51 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Chrome iOS Autofill bug</title>
+    <style>
+      #ui-console {
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        font-size: 14px;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      #ui-console > *::before {
+        position: relative;
+        content: '> ';
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Native change event</h2>
+    <form>
+      <input class="native-input" type="text" name="firstname" placeholder="Enter your firstname" />
+      <input class="native-input" type="text" name="lastname" placeholder="Enter your lastname" />
+      <input class="native-input" type="email" name="email" placeholder="Enter your email" />
+    </form>
+   
+
+    <div id="ui-console"></div>
+
+    <script>
+      const uiConsole = document.querySelector('#ui-console');
+
+      Array.from(document.querySelectorAll('.native-input')).forEach(input => {
+        input.addEventListener('change', function (event) {
+          uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
+        });
+        input.addEventListener('input', function (event) {
+          uiConsole.innerHTML += `<div>Native input event: ${event.target.value}</div>`;
+        });
+        input.addEventListener('keyup', function (event) {
+          uiConsole.innerHTML += `<div>Native keyup event: ${event.target.value}</div>`;
+        });
+        input.addEventListener('keydown', function (event) {
+          uiConsole.innerHTML += `<div>Native keydown event: ${event.target.value}</div>`;
+        });
+      });
+    </script>
+  </body>
+</html>
