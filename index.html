@@ -37,9 +37,14 @@
     <script>
       const uiConsole = document.querySelector('#ui-console');
 
-      Array.from(document.querySelectorAll('.native-input')).forEach(input => input.addEventListener('change', function (event) {
-        uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
-      }));
+      Array.from(document.querySelectorAll('.native-input')).forEach(input => {
+        input.addEventListener('change', function (event) {
+          uiConsole.innerHTML += `<div>Native change event: ${event.target.value}</div>`;
+        });
+        input.addEventListener('input', function (event) {
+          uiConsole.innerHTML += `<div>Native input event: ${event.target.value}</div>`;
+        });
+      });
 
       class Form extends React.Component {
         onChange(event) {
